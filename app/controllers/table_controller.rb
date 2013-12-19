@@ -16,4 +16,16 @@ class TableController < ApplicationController
       render :text => "NOT OK"
     end
   end
+
+  def create_session
+    begin
+      table_id = params[0]
+      session_name = params[1]
+      is_dynamic = params[2]
+      s_id = Session::create_session(table_id,is_dynamic,session_name)
+      render :text => "Session ID->#{s_id.rows[0]}"
+    rescue
+      render :text => "NOT OK"
+    end
+  end
 end

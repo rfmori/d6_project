@@ -8,7 +8,7 @@ class Session < ActiveRecord::Base
     r
   end
 
-  def open_session()
+  def open_session
     connection.execute("SELECT open_session('#{self['id']}')")
   end
 end
