@@ -7,4 +7,8 @@ class Post < ActiveRecord::Base
     r = connection.select_all("SELECT post_message('#{ses_id}',#{plr_id},#{message},#{status})")
     r
   end
+  def get_posts_by_session(ses_id,last)
+    r = connection.select_all("SELECT get_all_posts_by_session('#{ses_id}',#{last})")
+    r
+  end
 end
