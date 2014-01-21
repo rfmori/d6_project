@@ -12,4 +12,8 @@ class Table < ActiveRecord::Base
     r = connection.select_all('SELECT find_all_tables()')
     r
   end
+
+  def self.invite_player(plr_id,tbl_id,own_id)
+
+  end
 end

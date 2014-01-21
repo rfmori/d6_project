@@ -16,6 +16,11 @@ class Session < ActiveRecord::Base
     connection.execute("SELECT close_session('#{self['id']}')")
   end
 
+  def self.players_in_session(ses_id)
+
+  end
+
+
   def self.get_sessions_by_table(table_id)
     r = connection.select_all("SELECT get_sessions_by_table(#{table_id})")
     a = []
