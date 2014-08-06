@@ -1,0 +1,14 @@
+<b>LOGIN</b>
+<%= form_for @tbl, :method=>:post, url: tables_create_table_path(@tbl) do |f| %>
+    <%= f.label 'Nome' %>:
+    <%= f.text_field :name %><br />
+    <%= f.label 'Desrição' %>:
+    <%= f.text_field :descript %><br />
+    <%= f.label 'Privado' %>:
+    <%= f.check_box :is_private %><br />
+
+    <!--%= f.label "Senha" %-->:
+    <!--%= f.text_field :pass %--><br />
+
+    <%=f.submit "Criar mesa" %>
+<% end %>

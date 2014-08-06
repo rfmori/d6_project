@@ -1,8 +1,14 @@
-class TableController < ApplicationController
+class TablesController < ApplicationController
   def create_table
     begin
-      tb_id = Table::create_table(params['name'],params['plr_id'],params['is_private'],params['descript'])
-      render :text => "TABLE ID->#{tb_id.rows[0]}"
+     t = params['table']
+     tb_id = Table::create_table(t['name'],session[:user_id],t['is_private'],t['descript'])
+     # render :text => "TABLE ID->#{tb_id.rows[0]}"
+     if(tb_id)
+       redirect_to users_logon_path(session[:user_name], messages: ["Mesa #{tb_id} criada!"]), :method =>:post,:alert => "OPA!"
+       #render users_logon_path(session[:user_name], messages: ["Mesa #{tb_id} criada!"])
+     end
+
     rescue StandardError => e
       render :text => e
     end
@@ -11,10 +17,18 @@ class TableController < ApplicationController
   def find_all_tables
     begin
       tbs = Table::find_all_tables()
-      render :text => tbs.rows.to_yaml.to_s
+      return tbs.rows.to_yaml.to_s
     rescue StandardError => e
-      render :text => e
+      return e
     end
+  end
+
+  def create
+    @tbl = Table.new
+  end
+
+  def find_tables_by_player(plrId)
+
   end
 
   def create_session

@@ -1,0 +1,12 @@
+<b>BEM VINDO <%= @user['name'] %></b><br/><br/>
+<% if (@messages) %>
+    <% @messages.each do |m| %>
+        <%= m %>
+    <% end %>
+<% end %>
+<b>MESAS QUE VOCÊ ABRIU:</b> <br/><br/>
+<% @tables.each do |t| %>
+    <%= link_to t['name'] , t %><br/>
+
+<% end %>
+<%= button_to 'Criar mesa', {:controller => 'tables', :action => 'create'}, {:method=>:post} %>
